@@ -6,14 +6,12 @@ public class UserAuthResponse {
     private String token;
     private String refreshToken;
 
-    // Constructor
     public UserAuthResponse(UserResponseDTO user, String token, String refreshToken) {
         this.user = user;
         this.token = token;
         this.refreshToken = refreshToken;
     }
 
-    // Getter dan Setter
     public UserResponseDTO getUser() {
         return user;
     }

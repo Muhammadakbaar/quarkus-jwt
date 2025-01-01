@@ -18,7 +18,6 @@ public class UserRequestDTO {
     @NotNull(message = "Roles are required")
     private Set<String> roles = Set.of("USER");
 
-    // Getter dan Setter
     public String getName() {
         return name;
     }

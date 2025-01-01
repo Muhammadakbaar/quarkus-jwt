@@ -10,7 +10,6 @@ public class LoginRequestDTO {
     @NotBlank(message = "Password is required")
     private String password;
 
-    // Getter dan Setter
     public String getEmail() {
         return email;
     }

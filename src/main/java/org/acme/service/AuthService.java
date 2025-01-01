@@ -15,10 +15,8 @@ import org.acme.dto.response.UserResponseDTO;
 import org.acme.entity.User;
 import org.acme.mapper.UserMapper;
 import org.acme.repository.UserRepository;
-import org.jboss.logging.Logger;
 import org.mindrot.jbcrypt.BCrypt;
 
-import java.util.HashSet;
 import java.util.UUID;
 
 @ApplicationScoped
@@ -57,7 +55,6 @@ public class AuthService {
                         String refreshToken = generateRefreshToken(user);
                         user.setRefreshToken(refreshToken);
 
-                        // Buat respons terstruktur
                         UserResponseDTO userResponseDTO = UserMapper.toResponseDTO(user);
                         UserAuthResponse userAuthResponse = new UserAuthResponse(userResponseDTO, token, refreshToken);
                         return Uni.createFrom().item(new ApiResponse("success", "Login success", userAuthResponse));
@@ -93,7 +90,6 @@ public class AuthService {
     private String generateRefreshToken(User user) {
         return UUID.randomUUID().toString();
     }
-
 
     private AuthResponseDTO createAuthResponse(String token, String refreshToken) {
         AuthResponseDTO response = new AuthResponseDTO();

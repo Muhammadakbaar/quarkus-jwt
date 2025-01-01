@@ -5,7 +5,6 @@ public class AuthResponseDTO {
     private String token;
     private String refreshToken;
 
-    // Getter dan Setter
     public String getToken() {
         return token;
     }

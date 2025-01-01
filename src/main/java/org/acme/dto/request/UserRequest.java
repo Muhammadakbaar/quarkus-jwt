@@ -11,7 +11,6 @@ public class UserRequest {
     @Email(message = "Email should be valid")
     private String email;
 
-    // Getter dan Setter
     public String getName() {
         return name;
     }

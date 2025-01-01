@@ -1,0 +1,10 @@
+```toml
+name = 'user'
+method = 'GET'
+url = ' http://localhost:8080/users'
+sortWeight = 3000000
+id = '15d1f240-2116-46f6-9c52-1af8fdc2d987'
+
+[auth.bearer]
+token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL2V4YW1wbGUuY29tL2lzc3VlciIsInVwbiI6ImFrYmFyQGdtYWlsLmNvbSIsImdyb3VwcyI6WyJBRE1JTiJdLCJpYXQiOjE3MzU3NjUzODAsImV4cCI6MTczNTc2ODk4MCwianRpIjoiYmY5YWNiZTAtMzFlNi00MTMwLTk1ZjgtNTBkM2E2ODRjY2UxIn0.iT2M_fPx7RGEoWxoew6UWEDR44YEyIV8c9C7PAQCrgMO4BMbpScystRmFzqhINfT-NCA5IxlJAgoCMytxm6bHezZiQHMkfMiRfGUbBKO-Bg79Y6rc80D69Gt6NRAPsDn-vDvK08iphzg3zjJUONYn3DiXCwUEB5-L9zC3zqgP4ZormJanSssQkf_5F6xcXTDwmcqNITTjE9Swalyv49gwgaF4Y83tf-mg4NxjyfCz0iPSJvS9HX2F5rQoo28iydYLbb2n4dyrMWTWaDGMsg_jYZR8uFgbeHeugQkTHTlU2WYtduf4AI3ItbymAePmkZZgNBGMjJ9hiNVD2oQF0KA2w'
+```

@@ -5,8 +5,6 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 
 public class RegisterRequestDTO {
@@ -22,7 +20,7 @@ public class RegisterRequestDTO {
 
     @NotNull(message = "Roles are required")
     private Set<String> roles = Set.of("USER");
-    // Getter dan Setter
+
     public String getName() {
         return name;
     }

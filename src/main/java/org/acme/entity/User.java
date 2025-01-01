@@ -1,15 +1,21 @@
 package org.acme.entity;
 
 import io.quarkus.hibernate.reactive.panache.PanacheEntity;
+import io.quarkus.hibernate.reactive.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "\"users\"")
-public class User extends PanacheEntity {
+public class User extends PanacheEntityBase {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+
     private String name;
     private String email;
     private String password;
@@ -20,7 +26,14 @@ public class User extends PanacheEntity {
     @Column(name = "role")
     private Set<String> roles;
 
-    // Getter dan Setter
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -61,7 +74,6 @@ public class User extends PanacheEntity {
         this.refreshToken = refreshToken;
     }
 
-    // Equals dan HashCode
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

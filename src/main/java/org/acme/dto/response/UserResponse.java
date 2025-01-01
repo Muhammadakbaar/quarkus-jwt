@@ -6,7 +6,6 @@ public class UserResponse {
     private String name;
     private String email;
 
-    // Getter dan Setter
     public Long getId() {
         return id;
     }
