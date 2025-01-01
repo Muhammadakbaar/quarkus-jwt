@@ -1,7 +1,7 @@
 package org.acme.mapper;
 
-import org.acme.dto.request.UserRequestDTO;
-import org.acme.dto.response.UserResponseDTO;
+import org.acme.dto.request.user.UserRequestDTO;
+import org.acme.dto.response.user.UserResponseDTO;
 import org.acme.entity.User;
 
 public class UserMapper {

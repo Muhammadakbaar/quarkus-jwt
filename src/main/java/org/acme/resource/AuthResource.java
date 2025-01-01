@@ -6,8 +6,8 @@ import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import org.acme.dto.request.LoginRequestDTO;
-import org.acme.dto.request.RegisterRequestDTO;
+import org.acme.dto.request.auth.LoginRequestDTO;
+import org.acme.dto.request.auth.RegisterRequestDTO;
 import org.acme.dto.response.ApiResponse;
 import org.acme.service.AuthService;
 

@@ -1,4 +1,4 @@
-package org.acme.dto.request;
+package org.acme.dto.request.auth;
 
 
 import jakarta.validation.constraints.Email;

@@ -1,7 +1,6 @@
-package org.acme.dto.response;
+package org.acme.dto.response.user;
 
 
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 

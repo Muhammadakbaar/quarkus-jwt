@@ -1,5 +1,7 @@
-package org.acme.dto.response;
+package org.acme.dto.response.auth;
 
+
+import org.acme.dto.response.user.UserResponseDTO;
 
 public class UserAuthResponse {
     private UserResponseDTO user;

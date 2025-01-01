@@ -1,4 +1,4 @@
-package org.acme.dto.response;
+package org.acme.dto.response.auth;
 
 
 public class AuthResponseDTO {
