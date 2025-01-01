@@ -1,10 +1,11 @@
 package org.acme.entity;
 
 import io.quarkus.hibernate.reactive.panache.PanacheEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "\"users\"")
@@ -12,8 +13,12 @@ public class User extends PanacheEntity {
     private String name;
     private String email;
     private String password;
-    private String role;
     private String refreshToken;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "role")
+    private Set<String> roles;
 
     // Getter dan Setter
     public String getName() {
@@ -40,12 +45,12 @@ public class User extends PanacheEntity {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
+    public Set<String> getRoles() {
+        return roles;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoles(Set<String> roles) {
+        this.roles = roles;
     }
 
     public String getRefreshToken() {

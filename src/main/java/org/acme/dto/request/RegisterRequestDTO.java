@@ -5,6 +5,10 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+
 public class RegisterRequestDTO {
     @NotBlank(message = "Name is required")
     private String name;
@@ -16,9 +20,8 @@ public class RegisterRequestDTO {
     @NotBlank(message = "Password is required")
     private String password;
 
-    @NotNull(message = "Role is required")
-    private String role = "USER";
-
+    @NotNull(message = "Roles are required")
+    private Set<String> roles = Set.of("USER");
     // Getter dan Setter
     public String getName() {
         return name;
@@ -44,11 +47,11 @@ public class RegisterRequestDTO {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
+    public Set<String> getRoles() {
+        return roles;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoles(Set<String> roles) {
+        this.roles = roles;
     }
 }

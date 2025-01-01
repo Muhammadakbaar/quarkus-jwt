@@ -31,7 +31,8 @@ public class AuthResource {
     public Uni<Response> login(@Valid LoginRequestDTO loginRequestDTO) {
         return authService.login(loginRequestDTO)
                 .onItem().transform(apiResponse -> Response.ok(apiResponse).build())
-                .onFailure().recoverWithItem(failure -> Response.status(Response.Status.UNAUTHORIZED).entity(new ApiResponse("error", "Login failed", null)).build());
+                .onFailure(IllegalArgumentException.class).recoverWithItem(failure -> Response.status(Response.Status.UNAUTHORIZED).entity(new ApiResponse("error", failure.getMessage(), null)).build())
+                .onFailure().recoverWithItem(failure -> Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new ApiResponse("error", "An unexpected error occurred", null)).build());
     }
 
     @POST

@@ -15,8 +15,10 @@ import org.acme.dto.response.UserResponseDTO;
 import org.acme.entity.User;
 import org.acme.mapper.UserMapper;
 import org.acme.repository.UserRepository;
+import org.jboss.logging.Logger;
 import org.mindrot.jbcrypt.BCrypt;
 
+import java.util.HashSet;
 import java.util.UUID;
 
 @ApplicationScoped
@@ -31,13 +33,14 @@ public class AuthService {
         user.setName(registerRequestDTO.getName());
         user.setEmail(registerRequestDTO.getEmail());
         user.setPassword(BCrypt.hashpw(registerRequestDTO.getPassword(), BCrypt.gensalt()));
-        user.setRole(registerRequestDTO.getRole());
+        user.setRoles(registerRequestDTO.getRoles());
 
         return userRepository.persist(user)
                 .onItem().transform(inserted -> {
                     String token = generateToken(user);
                     String refreshToken = generateRefreshToken(user);
                     user.setRefreshToken(refreshToken);
+
                     UserResponseDTO userResponseDTO = UserMapper.toResponseDTO(user);
                     UserAuthResponse userAuthResponse = new UserAuthResponse(userResponseDTO, token, refreshToken);
                     return new ApiResponse("success", "Registrasi success", userAuthResponse);
@@ -46,12 +49,15 @@ public class AuthService {
 
     @WithSession
     public Uni<ApiResponse> login(LoginRequestDTO loginRequestDTO) {
+
         return userRepository.findByEmail(loginRequestDTO.getEmail())
                 .onItem().ifNotNull().transformToUni(user -> {
                     if (BCrypt.checkpw(loginRequestDTO.getPassword(), user.getPassword())) {
                         String token = generateToken(user);
                         String refreshToken = generateRefreshToken(user);
                         user.setRefreshToken(refreshToken);
+
+                        // Buat respons terstruktur
                         UserResponseDTO userResponseDTO = UserMapper.toResponseDTO(user);
                         UserAuthResponse userAuthResponse = new UserAuthResponse(userResponseDTO, token, refreshToken);
                         return Uni.createFrom().item(new ApiResponse("success", "Login success", userAuthResponse));
@@ -59,7 +65,9 @@ public class AuthService {
                         return Uni.createFrom().failure(new IllegalArgumentException("Invalid credentials"));
                     }
                 })
-                .onItem().ifNull().failWith(() -> new IllegalArgumentException("User not found"));
+                .onItem().ifNull().failWith(() -> {
+                    return new IllegalArgumentException("User not found");
+                });
     }
 
     public Uni<AuthResponseDTO> refreshToken(String refreshToken) {
@@ -74,17 +82,18 @@ public class AuthService {
                 .onItem().ifNull().failWith(() -> new IllegalArgumentException("Invalid refresh token"));
     }
 
-    public String generateToken(User user) {
+    private String generateToken(User user) {
         return Jwt.issuer("https://example.com/issuer")
                 .upn(user.getEmail())
-                .groups(user.getRole())
-                .expiresIn(3600) // Token valid for 1 hour
+                .groups(user.getRoles())
+                .expiresIn(3600)
                 .sign();
     }
 
     private String generateRefreshToken(User user) {
-        return UUID.randomUUID().toString(); // Refresh Token berupa UUID
+        return UUID.randomUUID().toString();
     }
+
 
     private AuthResponseDTO createAuthResponse(String token, String refreshToken) {
         AuthResponseDTO response = new AuthResponseDTO();

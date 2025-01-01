@@ -10,6 +10,7 @@ public class UserMapper {
         userResponseDTO.setId(user.id);
         userResponseDTO.setName(user.getName());
         userResponseDTO.setEmail(user.getEmail());
+        userResponseDTO.setRoles(user.getRoles()); // Set roles sebagai Set<String>
         return userResponseDTO;
     }
 
@@ -17,6 +18,7 @@ public class UserMapper {
         User user = new User();
         user.setName(userRequestDTO.getName());
         user.setEmail(userRequestDTO.getEmail());
+        user.setRoles(userRequestDTO.getRoles()); // Set roles sebagai Set<String>
         return user;
     }
 }

@@ -12,7 +12,7 @@ type = 'BEARER'
 type = 'JSON'
 raw = '''
 {
-  "email": "desinta@gmail.com",
-  "password": "123456",
+  "email": "akbar@gmail.com",
+  "password": "123456"
 }'''
 ```

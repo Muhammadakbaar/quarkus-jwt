@@ -1,10 +1,14 @@
 package org.acme.dto.response;
 
 
+import java.util.List;
+import java.util.Set;
+
 public class UserResponseDTO {
     private Long id;
     private String name;
     private String email;
+    private Set<String> roles;
 
     // Getter dan Setter
     public Long getId() {
@@ -29,5 +33,13 @@ public class UserResponseDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<String> roles) {
+        this.roles = roles;
     }
 }
